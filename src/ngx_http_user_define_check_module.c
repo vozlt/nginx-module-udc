@@ -162,7 +162,9 @@ ngx_http_status_handler(ngx_http_request_t *r)
     fc = 1;
     rule = alcf->rules->elts;
     for (i = 0; i < alcf->rules->nelts; i++) {
-        if (ngx_strncasecmp(rule[i].agent_text.data, (u_char *) r->args.data, rule[i].agent_text.len) == 0) {
+        if (ngx_strncasecmp(rule[i].agent_text.data, (u_char *) r->args.data,
+                    rule[i].agent_text.len) == 0
+                    && rule[i].agent_text.len == r->args.len) {
             fc = 0;
             break;
         }
