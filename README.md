@@ -38,6 +38,13 @@ location /user-define-check {
 ```
 
 ## Description
+This is an Nginx module that compare the value of user-defined variables and value of request.
+This module returns the compared result to string that is specific type.
+The types as follows:
+* JSON
+* TEXT
+
+## Directives
 
 ### user_define_check
 
@@ -64,7 +71,7 @@ Description: The output type of result.
 | -                  | -                                    |
 | ------------------ | ------------------------------------ |
 | **Syntax**         | user_define_check_allow_text string  |
-| **Default**        | -                                    |
+| **Default**        | true                                 |
 | **Context**        | http, server, location, limit_except |
 
 Description: The string of success result.
@@ -74,7 +81,7 @@ Description: The string of success result.
 | -                  | -                                    |
 | ------------------ | ------------------------------------ |
 | **Syntax**         | user_define_check_deny_text string   |
-| **Default**        | -                                    |
+| **Default**        | false                                |
 | **Context**        | http, server, location, limit_except |
 
 Description: The string of failure result.
