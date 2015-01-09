@@ -8,6 +8,12 @@ Nginx module to compare the value of user-defined variables and request.
 ## Dependencies
 * nginx
 
+## Compatibility
+* 1.7.x (last tested: 1.7.8)
+* 1.6.x (last tested: 1.6.2)
+
+Earlier versions is not tested.
+
 ## Installation
 
 1. Clone the git repository.
