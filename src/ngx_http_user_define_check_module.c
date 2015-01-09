@@ -3,7 +3,7 @@
  * @brief:   The simple module to check user-defined value.
  * @author:  YoungJoo.Kim <vozlt@vozlt.com>
  * @version:
- * @date:    20140715
+ * @date:
  *
  * Compile:
  *           shell> ./configure --add-module=/path/to/nginx-module-udc
@@ -13,6 +13,10 @@
 #include <ngx_config.h>
 #include <ngx_core.h>
 #include <ngx_http.h>
+
+#define NGX_USER_DEFINE_CHECK_DEFAULT_OUT_TYPE      "json"
+#define NGX_USER_DEFINE_CHECK_DEFAULT_ALLOW_TEXT    "true"
+#define NGX_USER_DEFINE_CHECK_DEFAULT_DENY_TEXT     "false"
 
 typedef struct {
     ngx_str_t   agent_text;
@@ -25,20 +29,16 @@ typedef struct {
     ngx_array_t     *rules;
 } ngx_http_user_define_check_loc_conf_t;
 
-#define NGX_USER_DEFINE_CHECK_DEFAULT_OUT_TYPE      "json"
-#define NGX_USER_DEFINE_CHECK_DEFAULT_ALLOW_TEXT    "true"
-#define NGX_USER_DEFINE_CHECK_DEFAULT_DENY_TEXT     "false"
-
 static char *ngx_http_user_define_check_rule(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 static void *ngx_http_user_define_check_create_loc_conf(ngx_conf_t *cf);
 static char *ngx_http_user_define_check_merge_loc_conf(ngx_conf_t *cf, void *parent, void *child);
 static char *ngx_http_set_user_define_check(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 
-static ngx_command_t  ngx_http_user_define_check_commands[] = {
+static ngx_command_t ngx_http_user_define_check_commands[] = {
 
     /* on|off */
     { ngx_string("user_define_check"),
-        NGX_HTTP_MAIN_CONF|NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_FLAG,
+        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_FLAG,
         ngx_http_set_user_define_check,
         0,
         0,
@@ -46,7 +46,7 @@ static ngx_command_t  ngx_http_user_define_check_commands[] = {
 
     /* agents */
     { ngx_string("user_define_check_agent"),
-        NGX_HTTP_MAIN_CONF|NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_HTTP_LMT_CONF|NGX_CONF_TAKE1,
+        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_TAKE1,
         ngx_http_user_define_check_rule,
         NGX_HTTP_LOC_CONF_OFFSET,
         0,
@@ -54,7 +54,7 @@ static ngx_command_t  ngx_http_user_define_check_commands[] = {
 
     /* ouput type: json|text */
     { ngx_string("user_define_check_out_type"),
-        NGX_HTTP_MAIN_CONF|NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_HTTP_LMT_CONF|NGX_CONF_TAKE1,
+        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_TAKE1,
         ngx_conf_set_str_slot,
         NGX_HTTP_LOC_CONF_OFFSET,
         offsetof(ngx_http_user_define_check_loc_conf_t, out_type),
@@ -62,7 +62,7 @@ static ngx_command_t  ngx_http_user_define_check_commands[] = {
 
     /* allow string */
     { ngx_string("user_define_check_allow_text"),
-        NGX_HTTP_MAIN_CONF|NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_HTTP_LMT_CONF|NGX_CONF_TAKE1,
+        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_TAKE1,
         ngx_conf_set_str_slot,
         NGX_HTTP_LOC_CONF_OFFSET,
         offsetof(ngx_http_user_define_check_loc_conf_t, allow_text),
@@ -70,7 +70,7 @@ static ngx_command_t  ngx_http_user_define_check_commands[] = {
 
     /* deny string */
     { ngx_string("user_define_check_deny_text"),
-        NGX_HTTP_MAIN_CONF|NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_HTTP_LMT_CONF|NGX_CONF_TAKE1,
+        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_TAKE1,
         ngx_conf_set_str_slot,
         NGX_HTTP_LOC_CONF_OFFSET,
         offsetof(ngx_http_user_define_check_loc_conf_t, deny_text),
@@ -80,7 +80,7 @@ static ngx_command_t  ngx_http_user_define_check_commands[] = {
 };
 
 
-static ngx_http_module_t  ngx_http_user_define_check_module_ctx = {
+static ngx_http_module_t ngx_http_user_define_check_module_ctx = {
     NULL,                                        /* preconfiguration */
     NULL,                                        /* postconfiguration */
 
@@ -95,7 +95,7 @@ static ngx_http_module_t  ngx_http_user_define_check_module_ctx = {
 };
 
 
-ngx_module_t  ngx_http_user_define_check_module = {
+ngx_module_t ngx_http_user_define_check_module = {
     NGX_MODULE_V1,
     &ngx_http_user_define_check_module_ctx,      /* module context */
     ngx_http_user_define_check_commands,         /* module directives */
@@ -180,7 +180,7 @@ ngx_http_status_handler(ngx_http_request_t *r)
         if (ngx_strcmp(alcf->out_type.data, "json") == 0) {
             b->last = ngx_sprintf(b->last, "{\"status\":\"%s\"}", alcf->deny_text.data);
         } else {
-            b->last = ngx_sprintf(b->last, "%s", alcf->allow_text.data);
+            b->last = ngx_sprintf(b->last, "%s", alcf->deny_text.data);
         }
     }
 

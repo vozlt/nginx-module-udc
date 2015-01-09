@@ -1,7 +1,7 @@
 Nginx module to compare the value of user-defined variables and request.
 ==========
 
-[![License](http://img.shields.io/badge/license-Nginx-green.svg)](http://nginx.org/LICENSE)
+[![License](http://img.shields.io/badge/license-BSD-brightgreen.svg)](https://github.com/vozlt/nginx-module-udc/blob/master/LICENSE)
 
 Nginx module to compare the value of user-defined variables and request.
 
