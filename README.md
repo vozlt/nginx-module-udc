@@ -46,6 +46,7 @@ location /user-define-check {
 ## Description
 This is an Nginx module that compare the value of user-defined variables and value of request.
 This module returns the compared result to string that is specific type.
+
 The types as follows:
 * JSON
 * TEXT
@@ -54,51 +55,51 @@ The types as follows:
 
 ### user_define_check
 
-| -                  | -                          |
-| ------------------ | -------------------------- |
-| **Syntax**         | user_define_check [on\|off] |
-| **Default**        | off                        |
-| **Context**        | http, server, location     |
+-   | -
+--- | ---
+**Syntax**  | user_define_check [on\|off]
+**Default** | off
+**Context** | server, location
 
 Description: Enables or disables user_define_check function.
 
 ### user_define_check_out_type
 
-| -                  | -                                      |
-| ------------------ | -------------------------------------- |
-| **Syntax**         | user_define_check_out_type [json\|text] |
-| **Default**        | json                                   |
-| **Context**        | http, server, location, limit_except   |
+-   | -
+--- | ---
+**Syntax**  | user_define_check_out_type [json\|text]
+**Default** | json
+**Context** | server, location
 
 Description: The output type of result.
 
 ### user_define_check_allow_text
-
-| -                  | -                                    |
-| ------------------ | ------------------------------------ |
-| **Syntax**         | user_define_check_allow_text string  |
-| **Default**        | true                                 |
-| **Context**        | http, server, location, limit_except |
+ 
+-   | -
+--- | ---
+**Syntax**  | user_define_check_allow_text <*user-defined-string*>
+**Default** | true
+**Context** | server, location
 
 Description: The string of success result.
 
 ### user_define_check_deny_text
 
-| -                  | -                                    |
-| ------------------ | ------------------------------------ |
-| **Syntax**         | user_define_check_deny_text string   |
-| **Default**        | false                                |
-| **Context**        | http, server, location, limit_except |
+-   | -
+--- | ---
+**Syntax**  | user_define_check_deny_text <*user-defined-string*>
+**Default** | false
+**Context** | server, location
 
 Description: The string of failure result.
 
 ### user_define_check_agent
 
-| -                  | -                                    |
-| ------------------ | ------------------------------------ |
-| **Syntax**         | user_define_check_agent string       |
-| **Default**        | -                                    |
-| **Context**        | http, server, location, limit_except |
+-   | -
+--- | ---
+**Syntax**  | user_define_check_agent <*user-defined-string*>
+**Default** | -
+**Context** | server, location
 
 Description: The string to check.
 
