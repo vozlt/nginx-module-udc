@@ -33,7 +33,7 @@ Earlier versions is not tested.
 
 ```Nginx
 location /user-define-check {
-    user_define_check               on;
+    user_define_check;
     user_define_check_out_type      json;
     user_define_check_allow_text    "true";
     user_define_check_deny_text     "false";
@@ -57,8 +57,8 @@ The types as follows:
 
 -   | -
 --- | ---
-**Syntax**  | user_define_check [on\|off]
-**Default** | off
+**Syntax**  | user_define_check
+**Default** | -
 **Context** | server, location
 
 Description: Enables or disables user_define_check function.

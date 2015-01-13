@@ -38,7 +38,7 @@ static ngx_command_t ngx_http_user_define_check_commands[] = {
 
     /* on|off */
     { ngx_string("user_define_check"),
-        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_FLAG,
+        NGX_HTTP_SRV_CONF|NGX_HTTP_LOC_CONF|NGX_CONF_NOARGS|NGX_CONF_TAKE1,
         ngx_http_set_user_define_check,
         0,
         0,
