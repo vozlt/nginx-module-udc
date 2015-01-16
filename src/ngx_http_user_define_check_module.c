@@ -112,7 +112,7 @@ ngx_module_t ngx_http_user_define_check_module = {
 
 
 static ngx_int_t
-ngx_http_status_handler(ngx_http_request_t *r)
+ngx_http_user_define_check_handler(ngx_http_request_t *r)
 {
     size_t             size = 1024;
     ngx_int_t          rc;
@@ -279,7 +279,7 @@ ngx_http_set_user_define_check(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     ngx_http_core_loc_conf_t *clcf;
 
     clcf = ngx_http_conf_get_module_loc_conf(cf, ngx_http_core_module);
-    clcf->handler = ngx_http_status_handler;
+    clcf->handler = ngx_http_user_define_check_handler;
 
     return NGX_CONF_OK;
 }
