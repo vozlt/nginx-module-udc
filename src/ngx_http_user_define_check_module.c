@@ -156,9 +156,6 @@ ngx_http_user_define_check_handler(ngx_http_request_t *r)
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
 
-    out.buf = b;
-    out.next = NULL;
-
     fc = 1;
     rule = alcf->rules->elts;
     for (i = 0; i < alcf->rules->nelts; i++) {
@@ -190,6 +187,10 @@ ngx_http_user_define_check_handler(ngx_http_request_t *r)
     r->headers_out.content_length_n = b->last - b->pos;
 
     b->last_buf = (r == r->main) ? 1 : 0;
+    b->last_in_chain = 1;
+
+    out.buf = b;
+    out.next = NULL;
 
     rc = ngx_http_send_header(r);
 
