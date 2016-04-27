@@ -1,7 +1,9 @@
-Nginx module to compare the value of user-defined variables and request.
+Nginx module to compare the value of user-defined variables and request.(test module)
 ==========
 
 [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg)](https://github.com/vozlt/nginx-module-udc/blob/master/LICENSE)
+
+This is my first nginx test module for understanding nginx module development.
 
 Nginx module to compare the value of user-defined variables and request.
 
@@ -120,4 +122,4 @@ shell> (echo -en "GET /user-define-check?USER_DEFINED_3 HTTP/1.1\r\nHost:localho
 ```
 
 ## Author
-YoungJoo.Kim [<vozlt@vozlt.com>]
+YoungJoo.Kim [<vozltx@gmail.com>]
