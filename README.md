@@ -5,7 +5,7 @@ Nginx module to compare the value of user-defined variables and request.(test mo
 
 This is my first nginx test module for understanding nginx module development.
 
-Nginx module to compare the value of user-defined variables and request.
+A nginx module to compare the value of user-defined variables and request.
 
 ## Dependencies
 * nginx
@@ -57,51 +57,51 @@ The types as follows:
 
 ### user_define_check
 
--   | -
---- | ---
-**Syntax**  | user_define_check
-**Default** | -
-**Context** | server, location
+| -   | - |
+| --- | --- |
+| **Syntax**  | user_define_check |
+| **Default** | - |
+| **Context** | server, location |
 
 Description: Enables or disables user_define_check function.
 
 ### user_define_check_out_type
 
--   | -
---- | ---
-**Syntax**  | user_define_check_out_type [json\|text]
-**Default** | json
-**Context** | server, location
+| -   | - |
+| --- | --- |
+| **Syntax**  | user_define_check_out_type [json\|text] |
+| **Default** | json |
+| **Context** | server, location |
 
 Description: The output type of result.
 
 ### user_define_check_allow_text
  
--   | -
---- | ---
-**Syntax**  | user_define_check_allow_text <*user-defined-string*>
-**Default** | true
-**Context** | server, location
+| -   | - |
+| --- | --- |
+| **Syntax**  | user_define_check_allow_text <*user-defined-string*> |
+| **Default** | true |
+| **Context** | server, location |
 
 Description: The string of success result.
 
 ### user_define_check_deny_text
 
--   | -
---- | ---
-**Syntax**  | user_define_check_deny_text <*user-defined-string*>
-**Default** | false
-**Context** | server, location
+| -   | - |
+| --- | --- |
+| **Syntax**  | user_define_check_deny_text <*user-defined-string*> |
+| **Default** | false |
+| **Context** | server, location |
 
 Description: The string of failure result.
 
 ### user_define_check_agent
 
--   | -
---- | ---
-**Syntax**  | user_define_check_agent <*user-defined-string*>
-**Default** | -
-**Context** | server, location
+| -   | - |
+| --- | --- |
+| **Syntax**  | user_define_check_agent <*user-defined-string*> |
+| **Default** | - |
+| **Context** | server, location |
 
 Description: The string to check.
 
